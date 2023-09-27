@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/card.css' %}">
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+  <ul>
+    <form action="" method="get" enctype="multipart/form-data" class="card">
+      {% csrf_token %}
+      <input name="search" type="text" value="{{ search_query }}"><br><br>
+      <input type="submit" value="Найти">
+    </form>
+    
+    <div class="card-text">
+      <div class="card">
+        {% for service in data %}
+        <a href="{% url 'service_url' service.id %}">
+        <div class="card-item">
+          <button class="image-button">
+            <div class="card-title">{{ service.title }}</div>
+            <div class="image-container">
+              <img src="{{ service.image }}" alt="Изображение услуги" class="service-image">
+            </div>
+          </button>
+        </div>
+      </a>
+        {% empty %}
+          Услуга не найдена
+        {% endfor %}
+      </div>
+    </div>
+
+    </div>
+  </ul>
+{% endblock %}
