@@ -2,6 +2,17 @@ body{
   background-image: url(https://celes.club/uploads/posts/2022-05/1653093734_1-celes-club-p-idei-dlya-fona-arta-krasivie-1.jpg);
   margin-left: -2rem;
 }
+.nice_text {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  text-align: center;
+  font-size: 24px;
+  text-transform: uppercase;
+  border: 1px solid black;
+  padding: 10px;
+  background-color: #fff;
+}
 .card {
   background-color: rgb(255, 255, 255);
   border: 1px solid black;
@@ -14,6 +25,28 @@ body{
   align-items: center;
   width: 90%;
   margin-left: 5rem;
+}
+.button {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.button:active {
+  background-color: #3e8e41;
 }
 
 .card a {
@@ -136,7 +169,7 @@ body{
   background-color: white;
 }
 
-input[name="search"] {
+input[name="search_services"] {
   padding: 10px;
   border: 2px solid #000000;
   border-radius: 4px;
@@ -145,7 +178,7 @@ input[name="search"] {
   width: 70%;
 }
 
-input[name="search"]:focus {
+input[name="search_services"]:focus {
   outline: none;
   border-color: #5c9e5f;
   box-shadow: 0 0 5px #4CAF50;
