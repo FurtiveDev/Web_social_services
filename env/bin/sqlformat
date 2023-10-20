@@ -1,4 +1,6 @@
-#!/home/student/projects/Base_app/env/bin/python3
+#!/bin/sh
+'''exec' "/home/dev/Рабочий стол/Projects_Django/Data_base/env/bin/python3" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys
