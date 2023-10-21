@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'social_assistance.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Web_service_data',
+        'USER': 'postgres',
+        'PASSWORD': 'gaga12345',
+        'HOST': 'localhost',
+        'PORT': 5432, # Стандартный порт PostgreSQL
     }
 }
 
