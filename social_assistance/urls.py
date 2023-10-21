@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', GetServices),
     path('service/<int:id>/', GetService, name='service_url'),
+    path('service/<int:id>/delete/',delete_service, name='delete_service'),
 ]

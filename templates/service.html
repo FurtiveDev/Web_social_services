@@ -3,10 +3,10 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-    <div class="text-descr">{{ data}}</div>
+    <div class="text-descr">{{data}}</div>
     <div class="imag-container">
         <img src="{{ imag }}" alt="Изображение услуги" />
-        <span class="nice_text">{{ phone_number }}, {{location}}, {{support_hours}}</span>
+        <span class="nice_text">{{location}}, {{support_hours}}</span>
     </div>
-    <div class=''><h1 class="">{{data.order.title}}</h1><a href="/"> <button class="button">Назад</button></a></div>
+    <div class=''><a href="/"> <button class="button">Назад</button></a></div>
 {% endblock %}

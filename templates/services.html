@@ -3,22 +3,26 @@
   <ul>
     <form action="" method="get" enctype="multipart/form-data" class="card">
       {% csrf_token %}
-      <input name="search_services" type="text" value="{{ search_query }}"><br><br>
+      <input name="search_services" type="text" value="{{search_query}}"><br><br>
       <input type="submit" value="Найти">
     </form>
     
     <div class="card-text">
       <div class="card">
         {% for service in data %}
-        <a href="{% url 'service_url' service.id %}">
+        <a href="{% url 'service_url' service.id_service %}">
         <div class="card-item">
           <button class="image-button">
-            <div class="card-title">{{ service.title }}</div>
+            <div class="card-title">{{ service.service_name }}</div>
             <div class="image-container">
               <img src="{{ service.image }}" alt="Изображение услуги" class="service-image">
             </div>
           </button>
+          <a href="{% url 'delete_service' service.id_service %}">
+            <button class="button-del">Удалить</button>
+          </a>
         </div>
+        
       </a>
         {% empty %}
           Услуга не найдена
