@@ -26,4 +26,4 @@ def GetService(request, id):
 def delete_service(request, id):
     with connection.cursor() as cursor:
         cursor.execute("UPDATE services SET status = 'удален' WHERE id_service = %s", [id])
-    return redirect('http://localhost:8080')
+    return redirect('/')
