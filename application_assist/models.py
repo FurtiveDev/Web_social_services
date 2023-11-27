@@ -45,7 +45,7 @@ class Requests(models.Model):
     creation_date = models.DateField(blank=True, null=True)
     completion_date = models.DateField(blank=True, null=True)
     id_user = models.ForeignKey('Users', models.DO_NOTHING, db_column='id_user',blank=True, null=True)
-
+    address = models.CharField(max_length=255, blank=True, null=True)
     class Meta:
         managed = True
         db_table = 'requests'
