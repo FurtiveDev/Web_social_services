@@ -129,7 +129,7 @@ class Requests(models.Model):
     STATUS_CHOICES = [
         ('registered', 'зарегистрирован'),
         ('moderating', 'на рассмотрении'),
-        ('approved', 'принят'),
+        ('approved', 'принято'),
         ('denied', 'отказано'),
         ('deleted', 'удален')
     ]
@@ -152,7 +152,7 @@ class Services(models.Model):
     id_service = models.AutoField(primary_key=True)
     service_name = models.CharField(max_length=255, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    image = models.BinaryField(blank=True, null=True)
+    image = models.CharField(max_length=255, blank=True, null=True)
     location_service = models.CharField(max_length=255, blank=True, null=True)
     support_hours = models.CharField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=20, blank=True, null=True, choices=STATUS_CHOICES)

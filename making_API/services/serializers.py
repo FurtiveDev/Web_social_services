@@ -1,6 +1,4 @@
-from services.models import Services
-from services.models import Requests
-from services.models import RequestServices
+from services.models import *
 from rest_framework import serializers
 
 
@@ -25,3 +23,9 @@ class RequestServicesSerializer(serializers.ModelSerializer):
         model = RequestServices
         # Поля, которые мы сериализуем
         fields = ['id_request_services', 'id_request', 'id_service']
+
+class UsersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Users
+        fields = ['id_user', 'first_name', 'password', 'is_moderator']
+
