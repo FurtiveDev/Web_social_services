@@ -1,6 +1,6 @@
 from services.models import *
 from rest_framework import serializers
-
+from services.models import CustomUser
 
 class ServicesSerializer(serializers.ModelSerializer):
     #id_service = serializers.IntegerField(read_only=False)  #чтобы можно было добавлять с произвольным id
@@ -24,8 +24,9 @@ class RequestServicesSerializer(serializers.ModelSerializer):
         # Поля, которые мы сериализуем
         fields = ['id_request_services', 'id_request', 'id_service']
 
-class UsersSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    is_staff = serializers.BooleanField(default=False, required=False)
+    is_superuser = serializers.BooleanField(default=False, required=False)
     class Meta:
-        model = Users
-        fields = ['id_user', 'first_name', 'password', 'is_moderator']
-
+        model = CustomUser
+        fields = ['email', 'password', 'full_name', 'phone_number', 'is_staff', 'is_superuser']
