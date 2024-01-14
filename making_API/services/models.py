@@ -48,10 +48,10 @@ class Requests(models.Model):
     ]
     id_request = models.AutoField(primary_key=True)
     status = models.CharField(max_length=20, blank=True, null=True, choices=STATUS_CHOICES)
-    creation_date = models.DateField(blank=True, null=True)
-    completion_date = models.DateField(blank=True, null=True)
+    creation_date = models.DateTimeField(blank=True, null=True) 
+    completion_date =  models.DateTimeField(blank=True, null=True) 
     id_user = models.ForeignKey('CustomUser', models.DO_NOTHING, db_column='id_user', blank=True, null=True)
-    
+    service_provided = models.BooleanField(blank=True, null=True)
     class Meta:
         managed = True
         db_table = 'requests'

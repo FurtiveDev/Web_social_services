@@ -11,11 +11,14 @@ class ServicesSerializer(serializers.ModelSerializer):
         fields = ['id_service', 'service_name', 'description', 'image', 'location_service', 'support_hours', 'status']
 
 class RequestsSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source='id_user.email', read_only=True)
+    creation_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    completion_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
     class Meta:
         # Модель, которую мы сериализуем
         model = Requests
         # Поля, которые мы сериализуем
-        fields = ['id_request', 'status', 'creation_date', 'completion_date', 'id_user']
+        fields = "__all__"
 
 class RequestServicesSerializer(serializers.ModelSerializer):
     class Meta:
