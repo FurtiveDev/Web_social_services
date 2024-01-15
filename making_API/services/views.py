@@ -381,7 +381,7 @@ def putRequestByAdmin(request, pk):
         return Response("Неверный статус!")
     req.status = request.data["status"]
     req.completion_date=datetime.now()
-    req.id_moderator = current_user
+    req.moderator_id = current_user
     req.save()
     serializer = RequestsSerializer(req)
     return Response(serializer.data)

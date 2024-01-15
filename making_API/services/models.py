@@ -20,8 +20,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=150, verbose_name="Пароль") 
     full_name = models.CharField(max_length=50, default='', verbose_name='ФИО')
     phone_number = models.CharField(max_length=30, default='', verbose_name='Номер телефона')   
-    is_staff = models.BooleanField(default=False, verbose_name="Является ли пользователь менеджером?")
-    is_superuser = models.BooleanField(default=False, verbose_name="Является ли пользователь админом?")
+    is_superuser = models.BooleanField(default=False, verbose_name="Является ли пользователь модератором?")
     USERNAME_FIELD = 'email'
 
     objects =  NewUserManager()
@@ -52,6 +51,7 @@ class Requests(models.Model):
     completion_date =  models.DateTimeField(blank=True, null=True) 
     id_user = models.ForeignKey('CustomUser', models.DO_NOTHING, db_column='id_user', blank=True, null=True)
     service_provided = models.BooleanField(blank=True, null=True)
+    moderator_id = models.ForeignKey('CustomUser', on_delete=models.CASCADE,  db_column='moderator_id', related_name='moderator_request', blank=True, null=True)
     class Meta:
         managed = True
         db_table = 'requests'

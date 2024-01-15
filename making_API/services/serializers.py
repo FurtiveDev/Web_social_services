@@ -8,7 +8,7 @@ class ServicesSerializer(serializers.ModelSerializer):
         # Модель, которую мы сериализуем
         model = Services
         # Поля, которые мы сериализуем
-        fields = ['id_service', 'service_name', 'description', 'image', 'location_service', 'support_hours', 'status']
+        fields = '__all__'
 
 class RequestsSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='id_user.email', read_only=True)
@@ -32,4 +32,4 @@ class UserSerializer(serializers.ModelSerializer):
     is_superuser = serializers.BooleanField(default=False, required=False)
     class Meta:
         model = CustomUser
-        fields = ['email', 'password', 'full_name', 'phone_number', 'is_staff', 'is_superuser']
+        fields = '__all__'
