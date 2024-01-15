@@ -11,6 +11,40 @@ from rest_framework.decorators import api_view
 from minio import Minio
 from minio.error import S3Error
 from datetime import datetime
+from django.http import JsonResponse
+from django.views.decorators.http import require_http_methods
+from .models import Requests
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+import json
+
+SECRET_KEY = 'aB3dE4gH'
+@csrf_exempt
+@require_http_methods(["PUT"])
+def UpdateRequestStatusView(request, id_request):
+    # Проверка ключа авторизации
+    data = json.loads(request.body)
+    print(data)
+    secret_key = data.get('secretKey')
+    if secret_key != SECRET_KEY:
+        return JsonResponse({'message': 'Неавторизованный запрос'}, status=401)
+
+    try:
+        result = data['result']
+        # Обновление статуса заявки
+        application = Requests.objects.get(id_request=id_request)
+        application.service_provided = result
+        application.save()
+        return JsonResponse({'message': 'Статус заявки обновлён'}, status=200)
+
+    except json.JSONDecodeError:
+        return JsonResponse({'message': 'Неверный формат данных'}, status=400)
+    except Requests.DoesNotExist:
+        return JsonResponse({'message': 'Заявка не найдена'}, status=404)
+    except Exception as e:
+        return JsonResponse({'message': str(e)}, status=500)
+
+    
 class CurrentUser: 
     _instance = None 
  
@@ -40,11 +74,13 @@ def services_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        services = Services.objects.filter(status='operating')
-        serializer = ServicesSerializer(services, many=True)
+        title = request.query_params.get('title')
+        services_query = Services.objects.filter(status='operating')
+        if title:
+            services_query = services_query.filter(service_name__icontains=title)
+        serializer = ServicesSerializer(services_query, many=True)
         return Response(serializer.data)
-    else:
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
     
 @api_view(['GET', 'PUT', 'DELETE'])
 def services_detail(request, id_service):

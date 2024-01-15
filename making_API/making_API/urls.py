@@ -17,6 +17,7 @@ urlpatterns = [
     path(r'users/', views.all_users_detail, name='user-list'),
     path(r'services_requests/<int:id_service>/put/', views.PostRequestToService, name='user-put'),
     path(r'services/<int:id_service>/image/', views.postServiceImage, name='post_service_image'),
+    path(r'update-request-status/<int:id_request>/', views.UpdateRequestStatusView, name='update-request-status'),
     path(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path(r'admin/', admin.site.urls),
 ]
